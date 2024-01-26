@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./CreateEmp.css"
 import PopUp from "./PopUp";
 
-function CreateEmp() {
+function CreateEmp(props) {
     let [inputData, setInputData] = useState({ firstName: "", lastName: "", email: "", mobile: "", age: "", address: "", gender: "" });
     let [toggle, setToggle] = useState(false)
     let getInputData = ({ target: { value, name } }) => {
@@ -12,9 +12,12 @@ function CreateEmp() {
     let sendFormData = async (e) => {
         e.preventDefault();
         try {
+            props.setProgress(30)
             let datas = await axios.post("http://localhost:3000/employeedb", inputData);
             // console.log(datas)
+            props.setProgress(70)
             setInputData({ firstName: "", lastName: "", email: "", mobile: "", age: "", address: "", gender: "" })
+            props.setProgress(100)
         } catch (error) {
             console.log(error)
         }
@@ -30,7 +33,7 @@ function CreateEmp() {
         <>
             {toggle && <PopUp bgcolor="green" msg="User Added" />}
             <form className='addUser container col-md-12 border border-success mt-4 p-3' onSubmit={sendFormData} >
-                <h1 style={{ textAlign: "center", fontWeight: "bold" }}>ADD EMPLOYEE</h1>
+                <h1 className="addHeading">ADD EMPLOYEE</h1>
                 <section className='container row'>
                     <div className='my-3 col-md-6'>
                         <input type="text" name="firstName" value={inputData.firstName} onChange={getInputData} className='form-control border-success' placeholder='First Name' />

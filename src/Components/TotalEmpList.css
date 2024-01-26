@@ -1,10 +1,18 @@
 .homePageHeading {
     text-align: center;
     color: #dc3545;
+    text-shadow: 1px 2px 8px rgb(74, 207, 62);
 }
 
 .card {
     box-shadow: 1px 1px 8px red;
+}
+
+.cardSectonList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .tatalEmpList {
@@ -15,6 +23,7 @@
     display: flex;
     justify-content: space-between;
     border-radius: 10px;
+    box-shadow: 1px 2px 5px 1px #dc3545;
 }
 
 .tatalEmpList .searchEmp input {
@@ -36,6 +45,12 @@
     color: white;
     margin-right: 10px;
     font-size: 18px;
+}
+.laodingPic{
+    text-align: center;
+    margin-top: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 @media only screen and (max-width: 600px) {

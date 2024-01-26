@@ -3,21 +3,29 @@ import "./TotalEmpList.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PopUp from './PopUp';
+import loadPic from "../PictureFolder/MolecularDNA.gif";
 
-function TotalEmpList() {
+function TotalEmpList(props) {
   let [datas, setDatas] = useState([]);
   let [originalDatas, setOriginalDatas] = useState([]);
   let [toggle, setToggle] = useState(false)
+  let [isLoading, setIsLoading] = useState(false);
   let fetchApiData = async () => {
     try {
+      props.setProgress(30)
       let { data } = await axios.get("http://localhost:3000/employeedb");
+      props.setProgress(70)
       setOriginalDatas(data);
       setDatas(data)
+      setIsLoading(false)
+      props.setProgress(100)
     } catch (error) {
+      setIsLoading(false)
       console.log(error)
     }
   }
   useEffect(() => {
+    setIsLoading(true)
     fetchApiData()
   }, [])
   let naviga = useNavigate();
@@ -84,9 +92,13 @@ function TotalEmpList() {
 
 
       {toggle && <PopUp bgcolor="red" msg="User Deleted" />}
-      <section style={{ display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
-        {datas.map(({ id, firstName, lastName, email, gender, age }) => {
+      <section className='cardSectonList' >
+        {isLoading && <img src={loadPic} className='laodingPic' alt="laading" />}
+        {datas.map(({ id, firstName, lastName, email, gender, age }, ind) => {
           return <div key={id} className="card m-3" style={{ width: "18rem" }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'absolute', right: '0' }}>
+              <span className="badge rounded-pill bg-danger"> {ind + 1} </span>
+            </div>
             <div className="card-body">
               <h5 className="card-title">{`${firstName} ${lastName}`}</h5>
               <ul className="list-group list-group-flush">

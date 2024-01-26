@@ -4,15 +4,18 @@ import axios from 'axios';
 import PopUp from './PopUp';
 import { useNavigate } from 'react-router-dom';
 
-function UpdateEmp() {
+function UpdateEmp(props) {
   let [inData, setInData] = useState({ firstName: "", lastName: "", email: "", mobile: "", age: "", address: "", gender: "" })
   let [toggle, setToggle] = useState(false);
   // let [redirect, setRedirect] = useState(false);
   let navigate = useNavigate();
   let empId = localStorage.getItem("empId")
   let fetchApiData = async () => {
+    props.setProgress(30)
     let { data } = await axios.get(`http://localhost:3000/employeedb/${empId}`);
+    props.setProgress(70)
     setInData(data);
+    props.setProgress(100)
   }
   useEffect(() => {
     fetchApiData();
@@ -22,9 +25,12 @@ function UpdateEmp() {
   }
   let sendFormData = async (e) => {
     e.preventDefault();
+    props.setProgress(30)
     let sendData = await axios.put(`http://localhost:3000/employeedb/${empId}`, inData);
     // console.log(sendData)
+    props.setProgress(70)
     setToggle(true)
+    props.setProgress(100)
     setTimeout(() => {
       navigate("/")
     }, 2000);
@@ -38,7 +44,7 @@ function UpdateEmp() {
     <>
       {toggle && <PopUp bgcolor="blue" msg="User details Updated" />}
       <form className='udateForm container col-md-12 border border-primary mt-4 p-3' onSubmit={sendFormData} >
-        <h1 className='text-primary' style={{ textAlign: "center", fontWeight: "bold" }}>Update EMPLOYEE</h1>
+        <h1 className='text-primary updateHeading'>Update EMPLOYEE</h1>
         <section className='container row'>
           <div className='my-3 col-md-6'>
             <input type="text" name="firstName" value={inData.firstName} onChange={getInputData} className='form-control border-primary' placeholder='First Name' />

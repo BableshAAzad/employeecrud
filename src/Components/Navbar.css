@@ -1,0 +1,12 @@
+.active {
+    background-color: rgb(170, 55, 47);
+}
+
+.navOption {
+    color: white;
+    border-radius: 4px;
+    margin: 2px 5px;
+    text-align: center;
+    padding: 4px 10px;
+    text-decoration: none;
+}

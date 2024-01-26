@@ -1,5 +1,10 @@
-.udateForm{
+.udateForm {
     border-radius: 8px;
     box-shadow: 1px 1px 12px blue;
     margin-bottom: 20px;
+}
+
+.updateHeading {
+    text-align: center;
+    font-weight: bold;
 }

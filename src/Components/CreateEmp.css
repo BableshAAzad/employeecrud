@@ -1,4 +1,10 @@
-.addUser{
+.addUser {
     box-shadow: 1px 2px 15px green;
     border-radius: 8px;
+}
+
+.addHeading {
+    text-align: center;
+    font-weight: bold;
+    color: green;
 }

@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function Employee() {
+function Employee(props) {
   let [apiData, setApiData] = useState({});
   let empId = localStorage.getItem("empId")
   let getApiData = async () => {
     try {
+      props.setProgress(30)
       let { data } = await axios.get(`http://localhost:3000/employeedb/${empId}`);
+      props.setProgress(70)
       setApiData(data)
+      props.setProgress(100)
     } catch (error) {
       console.log(error)
     }
