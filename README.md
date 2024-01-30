@@ -16,7 +16,7 @@ HOW to use :
 3. first start your json server then start your react+vite project
 
    <p text="center">
-   <h2>Home page : delete employee, see detail about emplyee, sorting according requirement </h2>
+   <h2>Home page : search employee delete employee, see detail about emplyee, sorting according requirement </h2>
      <img src="./src/PictureFolder/home.PNG"  />
      <br>
     <h2> Add Employee </h2>
