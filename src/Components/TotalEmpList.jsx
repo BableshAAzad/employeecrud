@@ -89,8 +89,6 @@ function TotalEmpList(props) {
           </select>
         </div>
       </section>
-
-
       {toggle && <PopUp bgcolor="red" msg="User Deleted" />}
       <section className='cardSectonList' >
         {isLoading && <img src={loadPic} className='laodingPic' alt="laading" />}
