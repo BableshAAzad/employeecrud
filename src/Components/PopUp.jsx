@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import "./PopUp.css"
 import ReactDOM from 'react-dom'
+
 function PopUp({ bgcolor, msg }) {
   useEffect(() => {
     document.body.style.overflowY = "hidden"

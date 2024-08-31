@@ -5,11 +5,14 @@ import PopUp from './PopUp';
 import { useNavigate } from 'react-router-dom';
 
 function UpdateEmp(props) {
+  
   let [inData, setInData] = useState({ firstName: "", lastName: "", email: "", mobile: "", age: "", address: "", gender: "" })
   let [toggle, setToggle] = useState(false);
   // let [redirect, setRedirect] = useState(false);
   let navigate = useNavigate();
   let empId = localStorage.getItem("empId")
+
+
   let fetchApiData = async () => {
     props.setProgress(30)
     let { data } = await axios.get(`http://localhost:3000/employeedb/${empId}`);

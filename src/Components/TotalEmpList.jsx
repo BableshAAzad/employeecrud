@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import "./TotalEmpList.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -6,10 +6,12 @@ import PopUp from './PopUp';
 import loadPic from "../PictureFolder/MolecularDNA.gif";
 
 function TotalEmpList(props) {
+  
   let [datas, setDatas] = useState([]);
   let [originalDatas, setOriginalDatas] = useState([]);
   let [toggle, setToggle] = useState(false)
   let [isLoading, setIsLoading] = useState(false);
+
   let fetchApiData = async () => {
     try {
       props.setProgress(30)
